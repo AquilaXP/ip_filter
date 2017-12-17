@@ -25,9 +25,9 @@ target_link_libraries(ip_filter
 
 #Test
 add_executable(test_ip_filter test.cpp)
-#set_target_properties(test_ip_filter PROPERTIES
-#    COMPILE_DEFINITIONS    BOOST_TEST_DYN_LINK
-#)
+set_target_properties(test_ip_filter PROPERTIES
+    COMPILE_DEFINITIONS    BOOST_TEST_DYN_LINK
+)
 target_include_directories(test_ip_filter PUBLIC ${Boost_INCLUDE_DIR} ${Boost_INCLUDE_DIR} )
 
 target_link_libraries(test_ip_filter
