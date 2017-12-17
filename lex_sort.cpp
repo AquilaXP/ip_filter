@@ -3,10 +3,9 @@
 #include <algorithm>
 #include <stdexcept>
 
-ip_pool_t lexicographically_reverse_sort( const ip_pool_t& ip_pool )
+void lexicographically_reverse_sort( ip_pool_t& ip_pool )
 {
-    auto ip_pool_new = ip_pool;
-    std::sort( std::begin( ip_pool_new ), std::end( ip_pool_new ),
+    std::sort( std::begin( ip_pool ), std::end( ip_pool ),
         []( const ip_t& left, const ip_t& right )
     {
         if( left.size() != right.size() )
@@ -26,6 +25,4 @@ ip_pool_t lexicographically_reverse_sort( const ip_pool_t& ip_pool )
         }
         return false;
     } );
-
-    return ip_pool_new;
 }

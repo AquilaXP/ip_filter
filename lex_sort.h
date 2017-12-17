@@ -2,4 +2,4 @@
 
 #include "ip.h"
 
-ip_pool_t lexicographically_reverse_sort( const ip_pool_t& ip_pool );
+void lexicographically_reverse_sort( ip_pool_t& ip_pool );
