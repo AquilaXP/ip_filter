@@ -14,7 +14,7 @@ ip_pool_t filter_by_any_byte( const ip_pool_t& ip_pool, const uint8_t anyByte );
 ip_pool_t filter_by_bytes( const ip_pool_t& ip_pool, const std::vector<uint8_t>& bytes );
 
 template<class...Args>
-ip_pool_t filter_by_bytes( const ip_pool_t& ip_pool, Args... args )
+auto filter_by_bytes( const ip_pool_t& ip_pool, Args... args )
 {
     ip_pool_t ip_pool_new;
 
