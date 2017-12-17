@@ -67,9 +67,12 @@ ip_pool_t filter_by_bytes( const ip_pool_t& ip_pool, const std::vector<uint8_t>&
         std::back_inserter( ip_pool_new ),
         [&bytes]( const ip_t& obj )
     {
+        if( obj.size() < bytes.size() )
+            throw std::runtime_error( "many bytes or incorect ip" );
+
         for( size_t i = 0; i < bytes.size(); ++i )
         {
-            if( obj.at( i ) != bytes.at( i ) )
+            if( obj[ i ] != bytes[ i ] )
                 return false;
         }
         return true;
