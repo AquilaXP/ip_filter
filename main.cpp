@@ -7,63 +7,8 @@
 #include "split_ip.h"
 #include "ip.h"
 #include "lex_sort.h"
+#include "filter.h"
 
-
-ip_pool_t FilterByFirstByte( const ip_pool_t& ip_pool, const uint8_t firstByte )
-{
-    ip_pool_t ip_pool_new;
-
-    std::copy_if( ip_pool.cbegin(), ip_pool.cend(),
-        std::back_inserter( ip_pool_new ),
-        [f = firstByte]( const ip_t& obj )
-    {
-        if( obj.at( 0 ) == f )
-        {
-            return true;
-        }
-        return false;
-    } );
-
-    return ip_pool_new;
-}
-
-ip_pool_t FilterByFirstAndSecondByte( const ip_pool_t& ip_pool, const uint8_t firstByte, const uint8_t secondByte )
-{
-    ip_pool_t ip_pool_new;
-
-    std::copy_if( ip_pool.cbegin(), ip_pool.cend(),
-        std::back_inserter( ip_pool_new ),
-        [f = firstByte, s = secondByte]( const ip_t& obj )
-    {
-        if( obj.at( 0 ) == f && obj.at( 1 ) == s )
-        {
-            return true;
-        }
-        return false;
-    } );
-
-    return ip_pool_new;
-}
-
-ip_pool_t FilterByAnyByte( const ip_pool_t& ip_pool, const uint8_t anyByte )
-{
-    ip_pool_t ip_pool_new;
-
-    std::copy_if( ip_pool.cbegin(), ip_pool.cend(),
-        std::back_inserter( ip_pool_new ),
-        [a = anyByte]( const ip_t& obj )
-    {
-        for( const auto& o : obj )
-        {
-            if( o == a )
-                return true;
-        }
-
-        return false;
-    } );
-
-    return ip_pool_new;
-}
 
 int main( int argc, char const *argv[] )
 {   
@@ -92,9 +37,9 @@ int main( int argc, char const *argv[] )
         }
         const auto sort_ip_pool = lexicographically_reverse_sort( ip_pool );
         std::cout << sort_ip_pool;
-        std::cout << FilterByFirstByte( sort_ip_pool, 1 );
-        std::cout << FilterByFirstAndSecondByte( sort_ip_pool, 46, 70 );
-        std::cout << FilterByAnyByte( sort_ip_pool, 46 );
+        std::cout << filter_by_first_byte( sort_ip_pool, 1 );
+        std::cout << filter_by_first_and_second_byte( sort_ip_pool, 46, 70 );
+        std::cout << filter_by_any_byte( sort_ip_pool, 46 );
     }
     catch( const std::exception &e )
     {

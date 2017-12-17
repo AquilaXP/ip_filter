@@ -9,7 +9,20 @@ find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 configure_file(version.h.in version.h @ONLY)
 
 #Library lib
-add_library(lib lib.cpp split_ip.cpp lex_sort.cpp lex_sort.h ip.h lib.h split_ip.h)
+set( SOURCE_LIB
+        lib.cpp
+        lex_sort.cpp
+        filter.cpp
+        split_ip.cpp
+        )
+set( HEADER_LIB
+        lib.h
+        lex_sort.h
+        filter.h
+        split_ip.h
+        ip.h
+        )
+add_library(lib ${SOURCE_LIB} ${HEADER_LIB} )
 set_target_properties(lib PROPERTIES
    INCLUDE_DIRECTORIES ${CMAKE_CURRENT_BINARY_DIR}
 )
@@ -28,6 +41,7 @@ add_executable(test_ip_filter test.cpp)
 set_target_properties(test_ip_filter PROPERTIES
     COMPILE_DEFINITIONS    BOOST_TEST_DYN_LINK
 )
+
 target_include_directories(test_ip_filter PUBLIC ${Boost_INCLUDE_DIR} ${Boost_INCLUDE_DIR} )
 
 target_link_libraries(test_ip_filter
