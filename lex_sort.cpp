@@ -6,7 +6,7 @@
 void lexicographically_reverse_sort( ip_pool_t& ip_pool )
 {
     std::sort( std::begin( ip_pool ), std::end( ip_pool ),
-        []( const ip_t& left, const ip_t& right )
+        []( const auto& left, const auto& right )
     {
         if( left.size() != right.size() )
             throw std::runtime_error( "incorect length ip" );
