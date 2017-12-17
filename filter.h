@@ -11,14 +11,15 @@ ip_pool_t filter_by_first_and_second_byte( const ip_pool_t& ip_pool, const uint8
 
 ip_pool_t filter_by_any_byte( const ip_pool_t& ip_pool, const uint8_t anyByte );
 
-template<class...Args>
+/// в travis не работает!!! >:(
+/*template<class...Args>
 ip_pool_t filter_by_bytes( const ip_pool_t& ip_pool, Args... args )
 {
     ip_pool_t ip_pool_new;
 
     std::copy_if( ip_pool.cbegin(), ip_pool.cend(),
         std::back_inserter( ip_pool_new ),
-        [&]( const ip_t& obj )
+        [&args...]( const ip_t& obj )
     {
         size_t i = 0;
         bool ret = true;
@@ -27,4 +28,4 @@ ip_pool_t filter_by_bytes( const ip_pool_t& ip_pool, Args... args )
     } );
 
     return ip_pool_new;
-}
+}*/
