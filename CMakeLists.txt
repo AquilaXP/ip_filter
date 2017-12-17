@@ -14,12 +14,14 @@ set( SOURCE_LIB
         lex_sort.cpp
         filter.cpp
         split_ip.cpp
+        read_ip_from_stream.cpp
         )
 set( HEADER_LIB
         lib.h
         lex_sort.h
         filter.h
         split_ip.h
+        read_ip_from_stream.h
         ip.h
         )
 add_library(lib ${SOURCE_LIB} ${HEADER_LIB} )
@@ -55,6 +57,12 @@ set_target_properties( ip_filter lib test_ip_filter PROPERTIES
     CXX_STANDARD_REQUIRED ON
     COMPILE_OPTIONS -Wall
 )
+
+#Копируем файл для тестирования
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/ip.tsv
+    ${CMAKE_CURRENT_BINARY_DIR}/ip.tsv
+    COPYONLY)
 
 install(TARGETS ip_filter RUNTIME DESTINATION bin)
 

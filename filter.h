@@ -2,7 +2,6 @@
 
 #include <cstdint>
 
-
 #include "ip.h"
 
 ip_pool_t filter_by_first_byte( const ip_pool_t& ip_pool, const uint8_t firstByte );

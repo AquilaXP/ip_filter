@@ -1,14 +1,11 @@
 #include <iostream>
-#include <string>
 #include <vector>
 #include <fstream>
-#include <algorithm>
 
-#include "split_ip.h"
 #include "ip.h"
 #include "lex_sort.h"
 #include "filter.h"
-
+#include "read_ip_from_stream.h"
 
 int main( int argc, char const *argv[] )
 {   
@@ -30,11 +27,8 @@ int main( int argc, char const *argv[] )
 #endif
 
         ip_pool_t ip_pool;
-        for( std::string line; std::getline( std::cin, line ); )
-        {
-            auto v = split( line, '\t' );
-            ip_pool.emplace_back( split( v.at( 0 ), '.' ) );
-        }
+        read_ip_from_stream( ip_pool, std::cin );
+
         const auto sort_ip_pool = lexicographically_reverse_sort( ip_pool );
         std::cout << sort_ip_pool;
         std::cout << filter_by_first_byte( sort_ip_pool, 1 );
