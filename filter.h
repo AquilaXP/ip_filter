@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 #include <cstdint>
 
 #include "ip.h"
@@ -9,3 +10,21 @@ ip_pool_t filter_by_first_byte( const ip_pool_t& ip_pool, const uint8_t firstByt
 ip_pool_t filter_by_first_and_second_byte( const ip_pool_t& ip_pool, const uint8_t firstByte, const uint8_t secondByte );
 
 ip_pool_t filter_by_any_byte( const ip_pool_t& ip_pool, const uint8_t anyByte );
+
+template<class...Args>
+ip_pool_t filter_by_bytes( const ip_pool_t& ip_pool, Args... args )
+{
+    ip_pool_t ip_pool_new;
+
+    std::copy_if( ip_pool.cbegin(), ip_pool.cend(),
+        std::back_inserter( ip_pool_new ),
+        [&args...]( const ip_t& obj )
+    {
+        size_t i = 0;
+        bool ret = true;
+        auto temp = { ( ret &= ( obj.at( i++ ) == args ) )... };
+        return ret;
+    } );
+
+    return ip_pool_new;
+}
