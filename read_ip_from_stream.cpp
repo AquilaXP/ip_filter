@@ -6,7 +6,7 @@
 #include "read_ip_from_stream.h"
 #include "split_ip.h"
 
-inline void read_ip_from_stream( ip_pool_t& ip_pool, std::istream& istr )
+void read_ip_from_stream( ip_pool_t& ip_pool, std::istream& istr )
 {
     for( std::string line; std::getline( istr, line ); )
     {
