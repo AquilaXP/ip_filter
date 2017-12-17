@@ -110,7 +110,7 @@ ip_pool_t FilterByFirstAndSecondByte( const ip_pool_t& ip_pool, const uint8_t fi
     return ip_pool_new;
 }
 
-ip_pool_t FilterByAnyByte( const ip_pool_t& ip_pool, const uint8_t anyByte ) noexcept
+ip_pool_t FilterByAnyByte( const ip_pool_t& ip_pool, const uint8_t anyByte )
 {
     ip_pool_t ip_pool_new;
 
