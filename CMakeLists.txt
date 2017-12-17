@@ -9,7 +9,7 @@ find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 configure_file(version.h.in version.h @ONLY)
 
 #Library lib
-add_library(lib lib.cpp split_ip.cpp lib.h split_ip.h)
+add_library(lib lib.cpp split_ip.cpp lex_sort.cpp lex_sort.h ip.h lib.h split_ip.h)
 set_target_properties(lib PROPERTIES
    INCLUDE_DIRECTORIES ${CMAKE_CURRENT_BINARY_DIR}
 )
