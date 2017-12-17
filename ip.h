@@ -4,7 +4,7 @@
 #include <string>
 #include <stdexcept>
 #include <limits>
-#include <iosfwd>
+#include <ostream>
 
 using ip_str_t = std::vector<std::string>;
 
