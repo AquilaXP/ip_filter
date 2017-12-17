@@ -51,7 +51,7 @@ ip_pool_t LexicographicallyReverseSort( const ip_pool_t& ip_pool )
 {
     auto ip_pool_new = ip_pool;
     std::sort( std::begin( ip_pool_new ), std::end( ip_pool_new ),
-        []( const auto& left, const auto& right )
+        []( const ip_t& left, const ip_t& right )
     {
         if( left.size() != right.size() )
             throw std::runtime_error( "incorect length ip" );
@@ -80,7 +80,7 @@ ip_pool_t FilterByFirstByte( const ip_pool_t& ip_pool, const uint8_t firstByte )
 
     std::copy_if( std::cbegin( ip_pool ), std::cend( ip_pool ),
         std::back_inserter( ip_pool_new ),
-        [f = firstByte]( const auto& obj )
+        [f = firstByte]( const ip_t& obj )
     {
         if( obj.at( 0 ) == f )
         {
@@ -98,7 +98,7 @@ ip_pool_t FilterByFirstAndSecondByte( const ip_pool_t& ip_pool, const uint8_t fi
 
     std::copy_if( std::cbegin( ip_pool ), std::cend( ip_pool ),
         std::back_inserter( ip_pool_new ),
-        [f = firstByte, s = secondByte]( const auto& obj )
+        [f = firstByte, s = secondByte]( const ip_t& obj )
     {
         if( obj.at( 0 ) == f && obj.at( 1 ) == s )
         {
@@ -116,7 +116,7 @@ ip_pool_t FilterByAnyByte( const ip_pool_t& ip_pool, const uint8_t anyByte )
 
     std::copy_if( std::cbegin( ip_pool ), std::cend( ip_pool ),
         std::back_inserter( ip_pool_new ),
-        [a = anyByte]( const auto& obj )
+        [a = anyByte]( const ip_t& obj )
     {
         for( const auto& o : obj )
         {
