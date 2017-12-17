@@ -78,7 +78,7 @@ ip_pool_t FilterByFirstByte( const ip_pool_t& ip_pool, const uint8_t firstByte )
 {
     ip_pool_t ip_pool_new;
 
-    std::copy_if( std::cbegin( ip_pool ), std::cend( ip_pool ),
+    std::copy_if( ip_pool.cbegin(), ip_pool.cend(),
         std::back_inserter( ip_pool_new ),
         [f = firstByte]( const ip_t& obj )
     {
@@ -96,7 +96,7 @@ ip_pool_t FilterByFirstAndSecondByte( const ip_pool_t& ip_pool, const uint8_t fi
 {
     ip_pool_t ip_pool_new;
 
-    std::copy_if( std::cbegin( ip_pool ), std::cend( ip_pool ),
+    std::copy_if( ip_pool.cbegin(), ip_pool.cend(),
         std::back_inserter( ip_pool_new ),
         [f = firstByte, s = secondByte]( const ip_t& obj )
     {
@@ -114,7 +114,7 @@ ip_pool_t FilterByAnyByte( const ip_pool_t& ip_pool, const uint8_t anyByte )
 {
     ip_pool_t ip_pool_new;
 
-    std::copy_if( std::cbegin( ip_pool ), std::cend( ip_pool ),
+    std::copy_if( ip_pool.cbegin(), ip_pool.cend(),
         std::back_inserter( ip_pool_new ),
         [a = anyByte]( const ip_t& obj )
     {
