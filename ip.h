@@ -4,12 +4,13 @@
 #include <string>
 #include <stdexcept>
 #include <limits>
+#include <iosfwd>
 
 using ip_str_t = std::vector<std::string>;
 
 struct ip_t : public std::vector<uint8_t>
 {
-    ip_t( const ip_str_t& ip_str )
+    explicit ip_t( const ip_str_t& ip_str )
     {
         for( auto& ip_part : ip_str )
         {
