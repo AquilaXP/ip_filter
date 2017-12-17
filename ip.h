@@ -24,7 +24,7 @@ struct ip_t : public std::vector<uint8_t>
 
 using ip_pool_t = std::vector<ip_t>;
 
-inline decltype(auto) operator << ( std::ostream& ostr, const ip_t& ip )
+inline decltype( auto ) operator << ( std::ostream& ostr, const ip_t& ip )
 {
     for( auto ip_part = ip.cbegin(); ip_part != ip.cend(); ++ip_part )
     {

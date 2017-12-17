@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 #include <cstdint>
 
 #include "ip.h"
@@ -12,8 +13,7 @@ ip_pool_t filter_by_any_byte( const ip_pool_t& ip_pool, const uint8_t anyByte );
 
 ip_pool_t filter_by_bytes( const ip_pool_t& ip_pool, const std::vector<uint8_t>& bytes );
 
-/// в travis не работает!!! >:(
-/*template<class...Args>
+template<class...Args>
 ip_pool_t filter_by_bytes( const ip_pool_t& ip_pool, Args... args )
 {
     ip_pool_t ip_pool_new;
@@ -29,4 +29,4 @@ ip_pool_t filter_by_bytes( const ip_pool_t& ip_pool, Args... args )
     } );
 
     return ip_pool_new;
-}*/
+}

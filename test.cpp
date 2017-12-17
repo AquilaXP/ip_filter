@@ -139,6 +139,56 @@ BOOST_AUTO_TEST_SUITE( test_ip_filter )
         BOOST_REQUIRE_EQUAL( ip_pool_filter, etalon_pool );
     }
 
+    BOOST_AUTO_TEST_CASE( test_filter_by_bytes_template_pack_1 )
+    {
+        std::ifstream input( "ip.tsv" );
+        BOOST_REQUIRE( input.is_open() );
+        ip_pool_t ip_pool;
+        read_ip_from_stream( ip_pool, input );
+        input.close();
+
+        lexicographically_reverse_sort( ip_pool );
+
+        const std::string test = {
+            R"(1.231.69.33
+            1.87.203.225
+            1.70.44.170
+            1.29.168.152
+            1.1.234.8)"
+        };
+        ip_pool_t etalon_pool;
+        std::istringstream ss( std::move( test ) );
+        read_ip_from_stream( etalon_pool, ss );
+
+        auto ip_pool_filter = filter_by_bytes( ip_pool, 1 );
+        BOOST_REQUIRE_EQUAL( ip_pool_filter, etalon_pool );
+    }
+
+
+    BOOST_AUTO_TEST_CASE( test_filter_by_bytes_template_pack_2 )
+    {
+        std::ifstream input( "ip.tsv" );
+        BOOST_REQUIRE( input.is_open() );
+        ip_pool_t ip_pool;
+        read_ip_from_stream( ip_pool, input );
+        input.close();
+
+        lexicographically_reverse_sort( ip_pool );
+
+        const std::string test = {
+            R"(46.70.225.39
+            46.70.147.26
+            46.70.113.73
+            46.70.29.76)"
+        };
+        ip_pool_t etalon_pool;
+        std::istringstream ss( std::move( test ) );
+        read_ip_from_stream( etalon_pool, ss );
+
+        auto ip_pool_filter = filter_by_bytes( ip_pool, 46, 70 );
+        BOOST_REQUIRE_EQUAL( ip_pool_filter, etalon_pool );
+    }
+
     BOOST_AUTO_TEST_CASE( test_filter_by_any_byte )
     {
         std::ifstream input( "ip.tsv" );
