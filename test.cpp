@@ -110,7 +110,7 @@ BOOST_AUTO_TEST_SUITE( test_ip_filter )
         std::istringstream ss( std::move(test) );
         read_ip_from_stream( etalon_pool, ss );
 
-        auto ip_pool_filter = filter_by_first_byte( ip_pool, 1 );
+        auto ip_pool_filter = filter_by_bytes( ip_pool, { 1 } );
         BOOST_REQUIRE_EQUAL( ip_pool_filter, etalon_pool );
     }
 
@@ -135,7 +135,7 @@ BOOST_AUTO_TEST_SUITE( test_ip_filter )
         std::istringstream ss( std::move( test ) );
         read_ip_from_stream( etalon_pool, ss );
 
-        auto ip_pool_filter = filter_by_first_and_second_byte( ip_pool, 46, 70 );
+        auto ip_pool_filter = filter_by_bytes( ip_pool, { 46, 70 } );
         BOOST_REQUIRE_EQUAL( ip_pool_filter, etalon_pool );
     }
 

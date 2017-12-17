@@ -58,3 +58,22 @@ ip_pool_t filter_by_any_byte( const ip_pool_t& ip_pool, const uint8_t anyByte )
 
     return ip_pool_new;
 }
+
+ip_pool_t filter_by_bytes( const ip_pool_t& ip_pool, const std::vector<uint8_t>& bytes )
+{
+    ip_pool_t ip_pool_new;
+
+    std::copy_if( ip_pool.cbegin(), ip_pool.cend(),
+        std::back_inserter( ip_pool_new ),
+        [&bytes]( const ip_t& obj )
+    {
+        for( size_t i = 0; i < bytes.size(); ++i )
+        {
+            if( obj.at( i ) != bytes.at( i ) )
+                return false;
+        }
+        return true;
+    } );
+
+    return ip_pool_new;
+}
