@@ -133,7 +133,8 @@ ip_pool_t FilterByAnyByte( const ip_pool_t& ip_pool, const uint8_t anyByte )
 int main( int argc, char const *argv[] )
 {   
     try
-    {        
+    {
+#ifdef _MSC_VER
         std::ofstream ofstr;
         std::ifstream ifstr;
         if( argc >= 2 )
@@ -146,6 +147,7 @@ int main( int argc, char const *argv[] )
                 std::cout.set_rdbuf( ofstr.rdbuf() );
             }
         }
+#endif
 
         ip_pool_t ip_pool;
         for( std::string line; std::getline( std::cin, line ); )
