@@ -18,7 +18,7 @@ ip_pool_t filter_by_bytes( const ip_pool_t& ip_pool, Args... args )
 
     std::copy_if( ip_pool.cbegin(), ip_pool.cend(),
         std::back_inserter( ip_pool_new ),
-        [&args...]( const ip_t& obj )
+        [&]( const ip_t& obj )
     {
         size_t i = 0;
         bool ret = true;
