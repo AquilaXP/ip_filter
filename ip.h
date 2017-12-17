@@ -24,7 +24,7 @@ struct ip_t : public std::vector<uint8_t>
 
 using ip_pool_t = std::vector<ip_t>;
 
-inline auto& operator << ( std::ostream& ostr, const ip_t& ip )
+inline decltype(auto) operator << ( std::ostream& ostr, const ip_t& ip )
 {
     for( auto ip_part = ip.cbegin(); ip_part != ip.cend(); ++ip_part )
     {
@@ -32,12 +32,13 @@ inline auto& operator << ( std::ostream& ostr, const ip_t& ip )
         {
             ostr << '.';
         }
+        // ѕреводим к uint32_t, чтобы выводило число, а не буквы из ANSI
         ostr << uint32_t( *ip_part );
     }
     return ostr;
 }
 
-inline auto& operator << ( std::ostream& ostr, const ip_pool_t& ip_pool )
+inline decltype( auto ) operator << ( std::ostream& ostr, const ip_pool_t& ip_pool )
 {
     for( auto& ip : ip_pool )
     {
