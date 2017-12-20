@@ -47,13 +47,11 @@ ip_pool_t filter_by_any_byte( const ip_pool_t& ip_pool, const uint8_t anyByte )
         std::back_inserter( ip_pool_new ),
         [a = anyByte]( const auto& obj )
     {
-        for( const auto& o : obj )
+        return std::any_of( obj.cbegin(), obj.cend(),
+            [&a]( const auto& obj )
         {
-            if( o == a )
-                return true;
-        }
-
-        return false;
+            return obj == a;
+        });
     } );
 
     return ip_pool_new;
