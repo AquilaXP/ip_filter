@@ -31,7 +31,7 @@ int main( int argc, char const *argv[] )
 
         lexicographically_reverse_sort( ip_pool );
         std::cout << ip_pool;
-        std::cout << filter_by_bytes( ip_pool, { 1 } );
+        std::cout << filter_by_bytes( ip_pool, 1 );
         std::cout << filter_by_bytes( ip_pool, { 46, 70 } );
         std::cout << filter_by_any_byte( ip_pool, 46 );
     }
