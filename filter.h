@@ -30,3 +30,11 @@ auto filter_by_bytes( const ip_pool_t& ip_pool, Args... args )
 
     return ip_pool_new;
 }
+
+template<class...Args>
+auto filter_by_bytes2( const ip_pool_t& ip_pool, Args... args )
+{
+    const std::vector<uint8_t> bytes = { uint8_t(args)... };
+
+    return filter_by_bytes( ip_pool, bytes );
+}
